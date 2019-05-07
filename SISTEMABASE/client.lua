@@ -1,11 +1,11 @@
-﻿--Взято с vk.com/mod_map_mta
---Подпишись братка!
---Сотрудничество с группой,пиар серверов и.т.д - vk.com/snackeros
+﻿--Tirado de vk.com/mod_map_mta
+--Assinar irmão!
+--Cooperação com o grupo, servidores de RP, etc. vk.com/snackeros
 
 local screenWidth, screenHeight = guiGetScreenSize()
 local windowWidth, windowHeight = 700, 700
 local windowX, windowY = (screenWidth / 2) - (windowWidth / 2), (screenHeight / 2) - (windowHeight / 2)
-local window = guiCreateWindow(windowX, windowY, windowWidth, windowHeight, "Панель редактирования баз", false)
+local window = guiCreateWindow(windowX, windowY, windowWidth, windowHeight, "Painel de Edição de Banco de Dados", false)
 
 guiWindowSetSizable(window, false)
 guiWindowSetMovable(window, false)
@@ -19,26 +19,26 @@ guiGridListAddColumn(gridlist, "x", 0.12)
 guiGridListAddColumn(gridlist, "y", 0.12)
 guiGridListAddColumn(gridlist, "z", 0.12)
 
-guiCreateLabel(0.62, 0.075, 0.4, 0.2, "Примечание:\nРедактировать можно только:\nOwner, Pass, Срок окончания аренды!\n\n", true, window )
+guiCreateLabel(0.62, 0.075, 0.4, 0.2, "Nota: \ n Você só pode editar: \ n Proprietário, Passe, Rescisão de aluguel! \ N \ n", true, window )
 
-guiCreateLabel(0.011, 0.04, 0.20, 0.03, "Сериал владельца:", true, window )
-guiCreateLabel(0.62, 0.04, 0.20, 0.03, "Название базы:", true, window )
+guiCreateLabel(0.011, 0.04, 0.20, 0.03, "Série do proprietário:", true, window )
+guiCreateLabel(0.62, 0.04, 0.20, 0.03, "Nome base:", true, window )
 guiCreateLabel(0.011, 0.075, 0.20, 0.03, "Pass:", true, window )
-guiCreateLabel(0.011, 0.11, 0.23, 0.03, "Дней до окончания аренды:", true, window )
-guiCreateLabel(0.011, 0.145, 0.20, 0.03, "Тип базы:", true, window )
+guiCreateLabel(0.011, 0.11, 0.23, 0.03, "Dias até o final do aluguel:", true, window )
+guiCreateLabel(0.011, 0.145, 0.20, 0.03, "Tipo de base:", true, window )
 owneredit = guiCreateEdit (0.25, 0.04, 0.35, 0.03, "", true, window)
 passedit = guiCreateEdit (0.25, 0.075, 0.35, 0.03, "", true, window)
 dayedit = guiCreateEdit (0.25, 0.11, 0.35, 0.03, "", true, window)
 nameedit = guiCreateEdit (0.75, 0.04, 0.35, 0.03, "", true, window)
-customType = guiCreateComboBox (0.25, 0.145, 0.35, 0.2, "Маленькая", true, window )
-guiComboBoxAddItem(customType, "Маленькая") guiComboBoxAddItem(customType, "Средняя") guiComboBoxAddItem(customType, "Большая") guiComboBoxAddItem(customType, "Огромная") guiComboBoxAddItem(customType, "VIP")
-create = guiCreateButton (0.01, 0.185, 0.587, 0.03, "Создать", true, window, "create" )
-redact = guiCreateButton (0.01, 0.22, 0.587, 0.03, "Редактировать", true, window, "redact" )
+customType = guiCreateComboBox (0.25, 0.145, 0.35, 0.2, "Um pequeno", true, window )
+guiComboBoxAddItem(customType, "Um pequeno") guiComboBoxAddItem(customType, "Média") guiComboBoxAddItem(customType, "Grande") guiComboBoxAddItem(customType, "Огромная") guiComboBoxAddItem(customType, "VIP")
+create = guiCreateButton (0.01, 0.185, 0.587, 0.03, "Criar", true, window, "create" )
+redact = guiCreateButton (0.01, 0.22, 0.587, 0.03, "Editar", true, window, "Editar" )
 
-deletebase = guiCreateButton (0.61, 0.15, 0.38, 0.03, "Удалить базу", true, window, "deletebase" )
-tpin = guiCreateButton (0.61, 0.185, 0.25, 0.03, "Телепорт: выход из базы", true, window, "tpin" )
-tpout = guiCreateButton (0.61, 0.22, 0.25, 0.03, "Телепорт: вход в базу", true, window, "tpout" )
-refreshgridd = guiCreateButton (0.87, 0.185, 0.12, 0.066, "Обновить", true, window, "refreshgridd" )
+deletebase = guiCreateButton (0.61, 0.15, 0.38, 0.03, "Remova a base", true, window, "deletebase" )
+tpin = guiCreateButton (0.61, 0.185, 0.25, 0.03, "Teleport: saída da base", true, window, "tpin" )
+tpout = guiCreateButton (0.61, 0.22, 0.25, 0.03, "Teleport: entrada para a base", true, window, "tpout" )
+refreshgridd = guiCreateButton (0.87, 0.185, 0.12, 0.066, "Atualizar", true, window, "refreshgridd" )
 --Игроки в базе
 playergridlist = guiCreateGridList (0.01, 0.57, 0.6, 0.375, true, window)
 column1 = guiGridListAddColumn(playergridlist, "Serial", 0.9)
@@ -46,10 +46,10 @@ column1 = guiGridListAddColumn(playergridlist, "Serial", 0.9)
 --Игроки
 playergrid = guiCreateGridList (0.62, 0.57, 0.6, 0.3, true, window)
 column2 = guiGridListAddColumn(playergrid, "Player", 0.9)
-guiCreateLabel(0.62, 0.87, 0.37, 0.02, "Сериал игрока:", true, window )
+guiCreateLabel(0.62, 0.87, 0.37, 0.02, "Jogador da série de TV:", true, window )
 editserialplayer = guiCreateEdit(0.62, 0.9, 0.37, 0.04, "", true, window)
-addserial = guiCreateButton(0.62, 0.95, 0.37, 0.035, "Добавить игрока", true, window, "tpin" )
-delserial = guiCreateButton(0.01, 0.95, 0.6, 0.035, "Удалить игрока", true, window, "tpout" )
+addserial = guiCreateButton(0.62, 0.95, 0.37, 0.035, "Adicionar jogador", true, window, "tpin" )
+delserial = guiCreateButton(0.01, 0.95, 0.6, 0.035, "Remover jogador", true, window, "tpout" )
 
 function show() 
 	if getElementData(getLocalPlayer(),"logedin") then 
@@ -78,18 +78,18 @@ addEventHandler("show",getRootElement(),show)
 addEventHandler ( "onClientGUIClick", getResourceRootElement(getThisResource()),
 	function()
 		if source == create then
-				if guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Маленькая" then
+				if guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Um pequeno" then
 					objectedit = 1
-				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Средняя" then
+				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Média" then
 					objectedit = 2
-				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Большая" then
+				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Grande" then
 					objectedit = 3
-				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Огромная" then
+				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "Enorme" then
 					objectedit = 4
 				elseif guiComboBoxGetItemText(customType, guiComboBoxGetSelected(customType)) == "VIP" then
 					objectedit = 5
 				else 
-					outputChatBox("Выбери тип базы!")
+					outputChatBox("Escolha um tipo de base!")
 					return
 				end
 			triggerServerEvent("bazecreate", localPlayer, localPlayer, "none", guiGetText(owneredit), objectedit, guiGetText(passedit), guiGetText(dayedit), guiGetText(nameedit))
@@ -239,11 +239,11 @@ function renderinfo()
 local x,y,z = getElementPosition(getLocalPlayer())
 	if bazadann then
 		for i, row in pairs(bazadann) do
-		local px,py,pz = tonumber(row['x']),tonumber(row['y']),tonumber(row['z']) -- Вход	
+		local px,py,pz = tonumber(row['x']),tonumber(row['y']),tonumber(row['z']) -- Login	
 		if tostring(row['serialowner']) == "none" then
-			namebase = "База №"..tonumber(row['id']).."\nНазвание базы: Продается\nТип базы: "..tostring(row['namebaze']).."("..tonumber(row['object'])..")\nДней до окончания срока аренды базы: Не занята"
+			namebase = "Base №"..tonumber(row['id']).."\ nNome de base: Para venda \ nTipo de base: "..tostring(row['namebaze']).."("..tonumber(row['object'])..")\nДней до окончания срока аренды базы: Не занята"
 		else
-			namebase = "База №"..tonumber(row['id']).."\nНазвание базы: "..tostring(row['owner']).."\nТип базы: "..tostring(row['namebaze']).."("..tonumber(row['object'])..")\nДней до окончания срока аренды базы: "..tostring(math.floor((row["day"]-getRealTime().timestamp)/86400))
+			namebase = "Base №"..tonumber(row['id']).."\ nNome de base: "..tostring(row['owner']).."\nТип базы: "..tostring(row['namebaze']).."("..tonumber(row['object'])..")\nДней до окончания срока аренды базы: "..tostring(math.floor((row["day"]-getRealTime().timestamp)/86400))
 		end
 		local pdistance = math.floor(getDistanceBetweenPoints3D ( x,y,z,px,py,pz ))
 			if pdistance <= 10 then
@@ -263,7 +263,7 @@ guiGridListClear(gridlist)
 guiGridListClear(playergridlist)
 	if bazadann then
 		for index, baze in ipairs(bazadann) do
-			if baze["serialowner"] == "none" then owner = "Пуста" else owner = baze["serialowner"] end
+			if baze["serialowner"] == "none" then owner = "Está vazio" else owner = baze["serialowner"] end
 			local row = guiGridListAddRow(gridlist)
 			guiGridListSetItemText(gridlist, row, 1, baze["id"], false, false)
 			guiGridListSetItemText(gridlist, row, 2, baze["namebaze"], false, false)
@@ -279,7 +279,7 @@ setTimer(refreshgrid, 3000, 1)
 
 addEventHandler('onClientResourceStart', resourceRoot,
 function()
-txd = engineLoadTXD ( "stena.txd" ) -- маленькая
+txd = engineLoadTXD ( "stena.txd" ) -- pequeno
 engineImportTXD ( txd, 2681 )
 col = engineLoadCOL ( "stena.col" )
 engineReplaceCOL ( col, 2681 )
@@ -287,7 +287,7 @@ dff = engineLoadDFF ( "stena.dff", 0 )
 engineReplaceModel ( dff, 2681 )
 engineSetModelLODDistance(2681, 500)
 
-txd = engineLoadTXD ( "stena2.txd" ) -- средняя\большая
+txd = engineLoadTXD ( "stena2.txd" ) -- médio / grande
 engineImportTXD ( txd, 2754 )
 col = engineLoadCOL ( "stena2.col" )
 engineReplaceCOL ( col, 2754 )
@@ -295,7 +295,7 @@ dff = engineLoadDFF ( "stena2.dff", 0 )
 engineReplaceModel ( dff, 2754 )
 engineSetModelLODDistance(2754, 500)
 
-txd = engineLoadTXD ( "stena3.txd" ) -- Вип
+txd = engineLoadTXD ( "stena3.txd" ) -- Vip
 engineImportTXD ( txd, 2779 )
 col = engineLoadCOL ( "stena3.col" )
 engineReplaceCOL ( col, 2779 )
