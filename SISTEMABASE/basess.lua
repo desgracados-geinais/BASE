@@ -55,7 +55,7 @@ function createBase(row)
 	elseif object == 2779 then
 		zmin = 750
 	else
-		outputChatBox("Ид объекта базы не дейтвителен!",source)
+		outputChatBox("O id do objeto base não é válido.!",source)
 		return false
 	end
 	
@@ -92,10 +92,10 @@ function bazedel(source,cmd,id)
 	end
 	id = tonumber(id)
 	if not id then
-		outputChatBox("Введите ID удаляемой базы!",source)
+		outputChatBox("Digite o ID do banco de dados a ser excluído.!",source)
 		return false
 	elseif id > baseID or id < 0 then
-		outputChatBox("Такой базы не существует!",source)
+		outputChatBox("Não existe tal base.!",source)
 		return false
 	end	
 	local qh = dbQuery(database, "DELETE FROM bases WHERE id='"..id.."'")
@@ -112,7 +112,7 @@ function bazedel(source,cmd,id)
 			removeCommandHandler(getElementData(v,"pass"))
 			setElementData(v,"pass",nil)
 			destroyElement(v)
-			outputChatBox("База удалена!",source)
+			outputChatBox("Base removida!",source)
 			return
 		end
 	end
@@ -127,30 +127,30 @@ function createNewBase(source,cmd,owner,obj,pass,day,namebase)
 	local namebase = tostring(namebase)
 	local colvo = string.len(namebase)
 	if colvo > 40 then
-	outputChatBox("Имя базы может состоять максимум из 30 символов!",source, 255, 255, 255) 
+	outputChatBox("O nome da base pode consistir em um máximo de 30 caracteres.!",source, 255, 255, 255) 
 	return end
 	if not owner or owner == "" then
-		outputChatBox("Введите сериал будущего хозяина базы!",source)
+		outputChatBox("Digite a série do futuro proprietário do banco de dados!",source)
 		return false
 	end
 	if not obj then
-		outputChatBox("Введите номер объекта базы!",source)
+		outputChatBox("Digite o número do objeto base!",source)
 		return false
 	end
 	if not pass or pass == "" then
-		outputChatBox("Введите пароль базы!",source)
+		outputChatBox("Digite a senha base!",source)
 		return false
 	end	
 	local bazas = dbPoll(dbQuery(database, "SELECT * FROM bases"),-1)
 	for index, baze in ipairs(bazas) do
 		if baze["pass"] == pass then
-			outputChatBox("Нельзя использовать этот пароль!",source,255,255,255)
+			outputChatBox("Não é possível usar essa senha.!",source,255,255,255)
 			return
 		end
 	end
 	day = tonumber(day)
 	if not day then
-		outputChatBox("Введите число окончания срока аренды!",source)
+		outputChatBox("Digite o número da data de vencimento do contrato!",source)
 		return false
 	end	
 	
@@ -158,25 +158,25 @@ function createNewBase(source,cmd,owner,obj,pass,day,namebase)
 	if obj == 1 then
 		objj = 2681
 		zmin = 750
-		namebaze = "Маленькая"
+		namebaze = "Um pequeno"
 	elseif obj == 2 then
 		objj = 2754
 		zmin = 750
-		namebaze = "Средняя"
+		namebaze = "Média"
 	elseif obj == 3 then
 		objj = 2754
 		zmin = 750
-		namebaze = "Большая"
+		namebaze = "Grande"
 	elseif obj == 4 then
 		objj = 2779
 		zmin = 750
-		namebaze = "Огромная"
+		namebaze = "Enorme"
 	elseif obj == 5 then
 		objj = 2779
 		zmin = 750
 		namebaze = "VIP"
 	else
-		outputChatBox("Ид объекта базы не дейтвителен!",source)
+		outputChatBox("O id do objeto base não é válido.!",source)
 		return false
 	end
 	objj = tonumber(objj)
@@ -240,9 +240,9 @@ if not (isObjectInACLGroup("user." ..getAccountName(getPlayerAccount(source)), a
 local namebase = tostring(namebase)
 local colvo = string.len(namebase)
 if colvo > 40 then
-outputChatBox("Имя базы может состоять максимум из 40 символов!",source, 255, 255, 255) 
+outputChatBox("O nome base pode conter no máximo 40 caracteres.!",source, 255, 255, 255) 
 return end
-if not (id or owner or pass or day) then outputChatBox("Заполните необходимые поля!",source) return end
+if not (id or owner or pass or day) then outputChatBox("Preencha os campos obrigatórios!",source) return end
 local id = tonumber(id)
 local owner = tostring(owner)
 local pass = tostring(pass)
@@ -250,7 +250,7 @@ local day = tonumber(day)
 local bazas = dbPoll(dbQuery(database, "SELECT * FROM bases"),-1)
 for index, baze in ipairs(bazas) do
 	if baze["pass"] == pass then
-		outputChatBox("Нельзя использовать этот пароль!",source,255,255,255)
+		outputChatBox("Não é possível usar essa senha.!",source,255,255,255)
 		return
 	end
 end
@@ -302,15 +302,15 @@ function redactBasepl(source,id,pass,namebase)
 local namebase = tostring(namebase)
 local colvo = string.len(namebase)
 if colvo > 40 then
-outputChatBox("Имя базы может состоять максимум из 40 символов!",source, 255, 255, 255) 
+outputChatBox("O nome base pode conter no máximo 40 caracteres.!",source, 255, 255, 255) 
 return end
-if not (id or namebase or pass) then outputChatBox("Заполните необходимые поля!",source) return end
+if not (id or namebase or pass) then outputChatBox("Preencha os campos obrigatórios!",source) return end
 local id = tonumber(id)
 local pass = tostring(pass)
 local bazas = dbPoll(dbQuery(database, "SELECT * FROM bases"),-1)
 for index, baze in ipairs(bazas) do
 	if baze["pass"] == pass then
-		outputChatBox("Нельзя использовать этот пароль!",source,255,255,255)
+		outputChatBox("Não é possível usar essa senha.!",source,255,255,255)
 		return
 	end
 end
@@ -426,7 +426,7 @@ function onPlayerBases(theElement)
 							if not isTimer(alarmTimer[theElement]) then
 								alarmTimer[theElement] = setTimer(function()
 									setElementPosition ( getPedOccupiedVehicle ( theElement ) or theElement,  result2[1].x, result2[1].y, result2[1].z+3 )
-									outputChatBox("У вас нет доступа к этой базе.",theElement)
+									outputChatBox("Você não tem acesso a este banco de dados..",theElement)
 								end,300,1,theElement)
 							end
 							setElementData(theElement,"inBase",false)
@@ -437,7 +437,7 @@ function onPlayerBases(theElement)
 						alarmTimer[theElement] = setTimer(function()
 							setElementPosition ( getPedOccupiedVehicle ( theElement ) or theElement,  result2[1].x, result2[1].y, result2[1].z+3 )
 						end,50,1,theElement)
-						outputChatBox("У вас нет доступа к этой базе.",theElement)
+						outputChatBox("Você não tem acesso a este banco de dados..",theElement)
 					end
 					setElementData(theElement,"inBase",false)
 				end
@@ -446,7 +446,7 @@ function onPlayerBases(theElement)
 						alarmTimer[theElement] = setTimer(function()
 							setElementPosition ( getPedOccupiedVehicle ( theElement ) or theElement,  result2[1].x, result2[1].y, result2[1].z+3 )
 						end,50,1,theElement)
-						outputChatBox("У вас нет доступа к этой базе.",theElement)
+						outputChatBox("Você não tem acesso a este banco de dados..",theElement)
 					end
 				setElementData(theElement,"inBase",false)
 			end
@@ -490,7 +490,7 @@ function open(source, cmd)
 if (isObjectInACLGroup("user." ..getAccountName(getPlayerAccount(source)), aclGetGroup("Admin"))) then
 		triggerClientEvent(source,"show",source)
 	else
-		outputChatBox("У вас нет прав!",source,209,252,115)
+		outputChatBox("Você não tem direitos!",source,209,252,115)
 	end
 end
 addCommandHandler("editbase",open)

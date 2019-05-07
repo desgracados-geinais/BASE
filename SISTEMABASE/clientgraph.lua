@@ -10,28 +10,28 @@ local windowpl = guiCreateWindow(windowX, windowY, windowWidth, windowHeight, "�
 guiWindowSetSizable(windowpl, false)
 guiSetVisible(windowpl, false)
 
-guiCreateLabel(0.62, 0.04, 0.4, 0.2, "Примечание:\nРедактировать можно только:\nНазвание базы и пароль!\n\n", true, windowpl )
+guiCreateLabel(0.62, 0.04, 0.4, 0.2, "Nota:\nVocê só pode editar:\nNome base e senha!\n\n", true, windowpl )
 
-arent = guiCreateLabel(0.62, 0.16, 0.4, 0.2, "Дней до окончания срока аренды:\nnone", true, windowpl )
+arent = guiCreateLabel(0.62, 0.16, 0.4, 0.2, "Dias até o final do período de locação:\nnone", true, windowpl )
 
-customTypepl = guiCreateComboBox (0.25, 0.05, 0.35, 0.2, "Выбери id базы", true, windowpl )
+customTypepl = guiCreateComboBox (0.25, 0.05, 0.35, 0.2, "Escolha o ID da base", true, windowpl )
 
-guiCreateLabel(0.011, 0.1, 0.20, 0.03, "Название базы:", true, windowpl )
-guiCreateLabel(0.011, 0.15, 0.20, 0.03, "Пароль:", true, windowpl )
+guiCreateLabel(0.011, 0.1, 0.20, 0.03, "Nome base:", true, windowpl )
+guiCreateLabel(0.011, 0.15, 0.20, 0.03, "Senha:", true, windowpl )
 ownereditpl = guiCreateEdit (0.25, 0.1, 0.35, 0.04, "", true, windowpl)
 passeditpl = guiCreateEdit (0.25, 0.15, 0.35, 0.04, "", true, windowpl)
-redactpl = guiCreateButton (0.01, 0.2, 0.587, 0.04, "Редактировать", true, windowpl)
-refreshgriddpl = guiCreateButton (0.01, 0.05, 0.23, 0.04, "Обновить", true, windowpl)
+redactpl = guiCreateButton (0.01, 0.2, 0.587, 0.04, "Editar", true, windowpl)
+refreshgriddpl = guiCreateButton (0.01, 0.05, 0.23, 0.04, "Atualizar", true, windowpl)
 --Игроки в базе
 playergridlistpl = guiCreateGridList (0.01, 0.25, 0.6, 0.67, true, windowpl)
 column1pl = guiGridListAddColumn(playergridlistpl, "Serial", 0.9)
 --Игроки
 playergridpl = guiCreateGridList (0.62, 0.25, 0.6, 0.55, true, windowpl)
 column2pl = guiGridListAddColumn(playergridpl, "Player", 0.9)
-guiCreateLabel(0.62, 0.81, 0.37, 0.029, "Сериал игрока:", true, windowpl )
+guiCreateLabel(0.62, 0.81, 0.37, 0.029, "Jogador da série de TV:", true, windowpl )
 editserialplayerpl = guiCreateEdit(0.62, 0.85, 0.37, 0.06, "", true, windowpl)
-addserialpl = guiCreateButton(0.62, 0.93, 0.37, 0.05, "Добавить игрока", true, windowpl)
-delserialpl = guiCreateButton(0.01, 0.93, 0.6, 0.05, "Удалить игрока", true, windowpl)
+addserialpl = guiCreateButton(0.62, 0.93, 0.37, 0.05, "Adicionar jogador", true, windowpl)
+delserialpl = guiCreateButton(0.01, 0.93, 0.6, 0.05, "Remover jogador", true, windowpl)
 
 function showpl(serial) 
 	if getElementData(getLocalPlayer(),"logedin") then 
@@ -58,7 +58,7 @@ function showpl(serial)
 		end
 		guiSetText(ownereditpl, "")
 		guiSetText(passeditpl, "")
-		guiSetText(arent, "Дней до окончания срока аренды:\nnone")
+		guiSetText(arent, "Dias até o final do período de locação:\nnone")
 	end 
 end
 addEvent("showpl",true)
@@ -87,7 +87,7 @@ function refreshpl(serial)
 		end
 		guiSetText(ownereditpl, "")
 		guiSetText(passeditpl, "")
-		guiSetText(arent, "Дней до окончания срока аренды:\nnone")
+		guiSetText(arent, "Dias até o final do período de locação:\nnone")
 	end 
 end
 addEvent("refreshpl",true)
@@ -97,12 +97,12 @@ addEventHandler("refreshpl",getRootElement(),refreshpl)
 addEventHandler ( "onClientGUIClick", getResourceRootElement(getThisResource()),
 	function()
 		if source == redactpl then
-			if guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Выбери id базы" then
+			if guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Escolha o ID da base" then
 				local id = guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl))
 				if guiGetText(passeditpl) ~= "" and guiGetText(ownereditpl) ~= "" then
 					triggerServerEvent("redactBasepl", localPlayer, localPlayer, id, guiGetText(passeditpl), guiGetText(ownereditpl))
 				else
-					outputChatBox("Заполни все поля!", 255, 255, 255)
+					outputChatBox("Preencha todos os campos!", 255, 255, 255)
 				end
 			end
 		elseif source == customTypepl then
@@ -125,12 +125,12 @@ addEventHandler ( "onClientGUIClick", getResourceRootElement(getThisResource()),
 						end
 						guiSetText(ownereditpl, baze["owner"])
 						guiSetText(passeditpl, baze["pass"])
-						guiSetText(arent, "Дней до окончания срока аренды:\n"..math.floor((baze["day"]-getRealTime().timestamp)/86400))
+						guiSetText(arent, "Dias até o final do período de locação:\n"..math.floor((baze["day"]-getRealTime().timestamp)/86400))
 					return
 					else
 						guiSetText(ownereditpl, "")
 						guiSetText(passeditpl, "")
-						guiSetText(arent, "Дней до окончания срока аренды:\nnone")
+						guiSetText(arent, "Dias até o final do período de locação:\nnone")
 					end
 				end
 			end
@@ -146,7 +146,7 @@ addEventHandler ( "onClientGUIClick", getResourceRootElement(getThisResource()),
 				guiSetText(editserialplayerpl, "")
 			end
 		elseif source == addserialpl then
-			if guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Выбери id базы" then
+			if guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Escolha o ID da base" then
 				local id = guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl))
 				if tonumber(id) ~= "" then
 					friend = {}
@@ -166,7 +166,7 @@ addEventHandler ( "onClientGUIClick", getResourceRootElement(getThisResource()),
 				end
 			end
 		elseif source == delserialpl then
-			if (guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Выбери id базы") and (guiGridListGetSelectedItem(playergridlistpl) ~= -1) then
+			if (guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl)) ~= "Escolha o ID da base") and (guiGridListGetSelectedItem(playergridlistpl) ~= -1) then
 				local id = guiComboBoxGetItemText(customTypepl, guiComboBoxGetSelected(customTypepl))
 				local dels = guiGridListGetItemText(playergridlistpl, guiGridListGetSelectedItem(playergridlistpl), 1)
 				friend = {}
