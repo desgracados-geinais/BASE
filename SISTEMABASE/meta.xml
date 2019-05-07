@@ -1,0 +1,17 @@
+<meta>
+	<script src="basess.lua" type="server" />
+	
+	<script src="client.lua" type="client" cache="false"/>
+	<script src="clientgraph.lua" type="client" cache="false"/>
+	<file src="stena.txd" />
+    <file src="stena.dff" />
+    <file src="stena.col" />
+	
+	<file src="stena2.txd" />
+    <file src="stena2.dff" />
+    <file src="stena2.col" />
+	
+	<file src="stena3.txd" />
+    <file src="stena3.dff" />
+    <file src="stena3.col" />
+</meta>
